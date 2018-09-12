@@ -27,7 +27,7 @@ public class BlackjackTesting extends TestCase{
 		assertEquals(10, card.getValue());
 	}
 	
-	public void testJackValue() {
+	public void testQueenValue() {
 		Card card = new Card("Queen", "Diamonds");
 		assertEquals(10, card.getValue());
 	}
