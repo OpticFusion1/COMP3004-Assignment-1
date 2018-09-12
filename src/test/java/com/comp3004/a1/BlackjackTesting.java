@@ -11,6 +11,39 @@ public class BlackjackTesting extends TestCase{
 		assertEquals("Two of Spades", card.getFullName());
 		assertEquals("S2", card.getShortName());
 	}
+	
+	public void testTenValue() {
+		Card card = new Card("Ten", "Hearts");
+		assertEquals(10, card.getValue());
+	}
+	
+	public void testKingValue() {
+		Card card = new Card("King", "Hearts");
+		assertEquals(10, card.getValue());
+	}
+	
+	public void testJackValue() {
+		Card card = new Card("Jack", "Clubs");
+		assertEquals(10, card.getValue());
+	}
+	
+	public void testJackValue() {
+		Card card = new Card("Queen", "Diamonds");
+		assertEquals(10, card.getValue());
+	}
+	
+	public void testAceValue() {
+		Card card = new Card("Ace", "Spades");
+		assertEquals(11, card.getValue());
+		card.switchAceValue();
+		assertEquals(1, card.getValue());
+	}
+	
+	public void testSwitchValueOnNonAceCard() {
+		Card card = new Card("Three", "Spades");
+		assertEquals(false, card.switchAceValue());
+	}
+	
 	public void testDealCards() {
 		Deck deck = new Deck();
 		
