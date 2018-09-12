@@ -1,4 +1,4 @@
-package comp3004_Assigment1;
+package com.comp3004.a1;
 
 import junit.framework.TestCase;
 
