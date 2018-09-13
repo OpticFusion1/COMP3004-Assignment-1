@@ -1,5 +1,7 @@
 package com.comp3004.a1;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 public class Deck {
@@ -22,26 +24,8 @@ public class Deck {
 		}
 	}
 	
-    /*
-    Name: ShuffleDeck
-    Purpose: Shuffle the deck to a random order
-     */
     public void shuffleDeck(){
-        Random random = new Random();
-        int change;
-        random.nextInt();
-
-        //Starting at index 0, each card is swapped with a random card at a larger index
-        for(int i = 0; i < DECK_SIZE; i++){
-            change = i + random.nextInt(DECK_SIZE - i);
-            swap(i,change);
-        }
-    }
-
-    private void swap(int i, int change){
-        Card temp = cards[i];
-        cards[i] = cards[change];
-        cards[change] = temp;
+    	Collections.shuffle(Arrays.asList(cards));
     }
     
     public Card dealCard() {
