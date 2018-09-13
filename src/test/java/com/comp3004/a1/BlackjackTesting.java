@@ -46,6 +46,7 @@ public class BlackjackTesting extends TestCase{
 	
 	public void testDealCards() {
 		Deck deck = new Deck();
+		deck.shuffleDeck();
 		
 		for(int i = 0; i < 52; i++) {
 			assertNotNull(deck.dealCard());
