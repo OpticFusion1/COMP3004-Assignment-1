@@ -7,15 +7,17 @@ public class Card {
 	private enum cardRanks {TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE,TEN};
 	private String faceValueStr;
 	private String suit;
+	private String shortName;
 	private int trueValue;
 	
 	public Card(String faceValue, String suit) {
 		this.faceValueStr = faceValue;
 		this.suit = suit;
-		this.trueValue = findTrueValue(faceValue);
+		this.trueValue = getTrueValue(faceValue);
+		shortName = suit.substring(0, 1) + getTrueValue(faceValueStr);
 	}
 	
-	private int findTrueValue(String faceValue) {
+	private int getTrueValue(String faceValue) {
 		if(faceValue.equals("Ace")) {
 			return 11;
 		} else if (faceValue.equals("King") || faceValue.equals("Queen") || faceValue.equals("Jack")) {
@@ -42,7 +44,7 @@ public class Card {
 	}
 	
 	public String getShortName() {
-		return suit.substring(0, 1) + getIntValueOfCard(faceValueStr);
+		return shortName;
 	}
 	
 	public boolean switchAceValue() {
