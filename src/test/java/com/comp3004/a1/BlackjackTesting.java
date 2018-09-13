@@ -74,5 +74,29 @@ public class BlackjackTesting extends TestCase{
 		
 		assertNotEquals(card1, card2);
 	}
+	
+	public void testSingleStringConstructor() {
+		Card card1 = new Card("SK");
+		Card card2 = new Card("H9");
+		Card card3 = new Card("DA");
+		Card card4 = new Card("CQ");
+		Card card5 = new Card("CJ");
+		Card card6 = new Card("D3");
+		
+		assertEquals("SK", card1.getShortName());
+		assertEquals("King of Spades", card1.getFullName());
+		assertEquals("H9", card2.getShortName());
+		assertEquals("Nine of Hearts", card2.getFullName());
+		assertEquals("DA", card3.getShortName());
+		assertEquals("Ace of Diamonds", card3.getFullName());
+		assertEquals("CQ", card4.getShortName());
+		assertEquals("Queen of Clubs", card4.getFullName());
+		assertEquals("CJ", card5.getShortName());
+		assertEquals("Jack of Clubs", card5.getFullName());
+		assertEquals("D3", card6.getShortName());
+		assertEquals("Three of Diamonds", card6.getFullName());
+		
+		
+	}
 
 }
