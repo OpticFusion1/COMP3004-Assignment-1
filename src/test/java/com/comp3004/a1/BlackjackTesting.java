@@ -1,5 +1,7 @@
 package com.comp3004.a1;
 
+import static org.junit.Assert.assertNotEquals;
+
 import junit.framework.TestCase;
 
 public class BlackjackTesting extends TestCase{
@@ -53,6 +55,24 @@ public class BlackjackTesting extends TestCase{
 		}
 		
 		assertNull(deck.dealCard());
+	}
+	
+	public void testShuffle() {
+		Deck deck1 = new Deck();
+		Deck deck2 = new Deck();
+		deck1.shuffleDeck();
+		
+		int index = 1;
+		String card1 = deck1.dealCard().getShortName();
+		String card2 = deck2.dealCard().getShortName();
+		
+		while(card1.equals(card2)) {
+			index++;
+			card1 = deck1.dealCard().getShortName();
+			card2 = deck2.dealCard().getShortName();
+		}
+		
+		assertNotEquals(card1, card2);
 	}
 
 }
