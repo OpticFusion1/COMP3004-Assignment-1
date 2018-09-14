@@ -1,10 +1,13 @@
 package com.comp3004.a1;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Card {
-	private enum cardRanks {TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE,TEN};
+	private ArrayList<String> cardNumberRanks = new ArrayList<>(Arrays.asList("Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"));
+	
 	private String faceValueStr;
 	private String suit;
 	private String shortName;
@@ -17,6 +20,42 @@ public class Card {
 		shortName = suit.substring(0, 1) + getTrueValue(faceValueStr);
 	}
 	
+	public Card(String shortName) {
+		this.shortName = shortName;
+		this.suit = getSuitFromSingleCharacter(shortName.substring(0, 1));
+		this.faceValueStr = getFaceValueFromSingleCharacter(shortName.substring(1));
+		this.trueValue = getTrueValue(faceValueStr);
+	}
+	
+	private String getSuitFromSingleCharacter(String subString) {
+		switch (subString) {
+		case "H":
+			return "Hearts";
+		case "D":
+			return "Diamonds";
+		case "S":
+			return "Spades";
+		case "C":
+			return "Clubs";
+		}
+		return null;
+	}
+
+	private String getFaceValueFromSingleCharacter(String subString) {
+		switch (subString) {
+		case "A":
+			return "Ace";
+		case "K":
+			return "King";
+		case "Q":
+			return "Queen";
+		case "J":
+			return "Jack";
+		default:
+			return cardNumberRanks.get(Integer.parseInt(subString) - 2);
+		}
+	}
+
 	private int getTrueValue(String faceValue) {
 		if(faceValue.equals("Ace")) {
 			return 11;
@@ -28,7 +67,8 @@ public class Card {
 	}
 	
 	private int getIntValueOfCard(String faceValue) {
-		return cardRanks.valueOf(faceValue.toUpperCase()).ordinal() + 2;
+		return cardNumberRanks.indexOf(faceValue) + 2;
+		
 	}
 	
 	public String getSuit() {
