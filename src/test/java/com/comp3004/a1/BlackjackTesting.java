@@ -2,6 +2,8 @@ package com.comp3004.a1;
 
 import static org.junit.Assert.assertNotEquals;
 
+import java.io.IOException;
+
 import junit.framework.TestCase;
 
 public class BlackjackTesting extends TestCase{
@@ -135,6 +137,22 @@ public class BlackjackTesting extends TestCase{
 		player.receiveCard(new Card("SA"));
 		player.receiveCard(new Card("CA"));
 		assertEquals(12, player.getTotal());
+	}
+	
+	public void testFileInput() throws IOException {
+		Game game = new Game();
+		String testDirectory = "src/test/java/com/comp3004/a1/";
+		
+		assertEquals("Player Wins", game.file(testDirectory + "FilePlayerWinNormal.txt"));
+		assertEquals("Dealer Wins", game.file(testDirectory + "FileDealerWinNormal.txt"));
+		assertEquals("Player Wins", game.file(testDirectory + "FilePlayerWinDealerBust.txt"));
+		assertEquals("Dealer Wins", game.file(testDirectory + "FileDealerWinPlayerBust.txt"));
+		assertEquals("Player Wins", game.file(testDirectory + "FilePlayerWinBlackjack.txt"));
+		assertEquals("Dealer Wins", game.file(testDirectory + "FileDealerWinBlackjack.txt"));
+		assertEquals("Dealer Wins", game.file(testDirectory + "FileDealerWinBlackjackTie.txt"));
+		assertEquals("Dealer Wins", game.file(testDirectory + "FileDealerWinTie.txt"));
+		assertEquals("Invalid file format", game.file(testDirectory + "FileInvalidFile.txt"));
+		
 	}
 
 }
