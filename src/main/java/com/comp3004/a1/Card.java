@@ -79,6 +79,10 @@ public class Card {
 		return trueValue;
 	}
 	
+	public String getFaceValue() {
+		return faceValueStr;
+	}
+	
 	public String getFullName() {
 		return faceValueStr + " of " + suit;
 	}
