@@ -96,7 +96,45 @@ public class BlackjackTesting extends TestCase{
 		assertEquals("D3", card6.getShortName());
 		assertEquals("Three of Diamonds", card6.getFullName());
 		
+	}
+	
+	public void testPlayerCardTotal() {
+		Deck deck = new Deck();
+		Player player = new Player();
+		Card receivedCard;
 		
+		deck.shuffleDeck();
+		receivedCard= deck.dealCard();
+		player.receiveCard(receivedCard);
+		
+		assertEquals(receivedCard.getValue(), player.getTotal());
+		
+	}
+	
+	public void testPlayerOneAce() {
+		Player player = new Player();
+		
+		player.receiveCard(new Card("DK"));
+		player.receiveCard(new Card("CQ"));
+		//receiveCard returns true when the player has not busted. False if they have
+		assertEquals(true, player.receiveCard(new Card("Ace", "Spades")));
+		assertEquals(21, player.getTotal());
+	}
+	
+	public void testPlayerBust() {
+		Player player = new Player();
+		
+		player.receiveCard(new Card("DK"));
+		player.receiveCard(new Card("CQ"));
+		assertEquals(false, player.receiveCard(new Card("CJ")));
+	}
+	
+	public void testPlayerTwoAces() {
+		Player player = new Player();
+		
+		player.receiveCard(new Card("SA"));
+		player.receiveCard(new Card("CA"));
+		assertEquals(12, player.getTotal());
 	}
 
 }
