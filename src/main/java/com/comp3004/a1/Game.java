@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Game {
 	private ArrayList<String> suits = new ArrayList<>(Arrays.asList("C","H","D","S"));
 	private ArrayList<String> values = new ArrayList<>(Arrays.asList("A", "K", "Q", "J", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"));
-	private final String invalidReturn = "Invalid file format";
+	private final String invalidReturn = "Invalid file input";
 	private final String playerWins = "Player Wins";
 	private final String dealerWins = "Dealer Wins";
 	public Game() {}
