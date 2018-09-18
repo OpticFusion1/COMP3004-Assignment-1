@@ -152,6 +152,8 @@ public class BlackjackTesting extends TestCase{
 		assertEquals("Dealer Wins", game.file(testDirectory + "FileDealerWinBlackjackTie.txt"));
 		assertEquals("Dealer Wins", game.file(testDirectory + "FileDealerWinTie.txt"));
 		assertEquals("Invalid file input", game.file(testDirectory + "FileInvalidInput.txt"));
+		assertEquals("Invalid file input", game.file(testDirectory + "FileInvalidCardTypes.txt"));
+		assertEquals("Invalid card sequence", game.file(testDirectory + "FileInvalidSequence.txt"));
 		
 	}
 
