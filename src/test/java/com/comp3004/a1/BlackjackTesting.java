@@ -200,5 +200,16 @@ public class BlackjackTesting extends TestCase{
 		assertEquals("HA SK ", player.getCards());
 		assertEquals("D4 XX", dealer.getDealerCards());
 	}
+	
+	public void testPlayerContainingAce() {
+		Player player = new Player();
+		Player player2 = new Player();
+		
+		player.receiveCard(new Card("HA"));
+		player2.receiveCard(new Card("C3"));
+		
+		assertEquals(true, player.hasAce());
+		assertEquals(false, player2.hasAce());
+	}
 
 }
