@@ -182,5 +182,23 @@ public class BlackjackTesting extends TestCase{
 		assertEquals("Card has already been played", game.file(testDirectory + "FileDuplicateCard.txt"));
 		
 	}
+	
+	public void testPlayerCards() {
+		Player player = new Player();
+		Player dealer = new Player();
+		
+		Card card1 = new Card("HA");
+		Card card2 = new Card("SK");
+		Card card3 = new Card("D4");
+		Card card4 = new Card("C2");
+		
+		player.receiveCard(card1);
+		player.receiveCard(card2);
+		dealer.receiveCard(card3);
+		dealer.receiveCard(card4);
+		
+		assertEquals("HA SK ", player.getCards());
+		assertEquals("D4 XX", dealer.getDealerCards());
+	}
 
 }
