@@ -179,6 +179,7 @@ public class BlackjackTesting extends TestCase{
 		assertEquals("Invalid card sequence", game.file(testDirectory + "FileInvalidSequence.txt"));
 		assertEquals("Invalid file input", game.file(testDirectory + "FileEmpty.txt"));
 		assertEquals("Invalid file input", game.file(testDirectory + "FileLessThanFourCards.txt"));
+		assertEquals("Card has already been played", game.file(testDirectory + "FileDuplicateCard.txt"));
 		
 	}
 
