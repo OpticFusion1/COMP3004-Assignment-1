@@ -9,7 +9,8 @@ import java.util.Arrays;
 public class Game {
 	private ArrayList<String> suits = new ArrayList<>(Arrays.asList("C","H","D","S"));
 	private ArrayList<String> values = new ArrayList<>(Arrays.asList("A", "K", "Q", "J", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"));
-	private final String invalidReturn = "Invalid file input";
+	private final String invalidInputReturn = "Invalid file input";
+	private final String invalidSequenceReturn = "Invalid card sequence";
 	private final String playerWins = "Player Wins";
 	private final String dealerWins = "Dealer Wins";
 	public Game() {}
@@ -26,8 +27,12 @@ public class Game {
 		Player dealer = new Player();
 				
 		//Checking input is valid
+		if(!checkValidCharacters(actions)) {
+			return invalidInputReturn;
+		}
+		
 		if(!checkValidSequence(actions)) {
-			return invalidReturn;
+			return invalidSequenceReturn;
 		}
 		
 		//Add cards to their respective arrays
@@ -85,7 +90,7 @@ public class Game {
 		}
 	}
 
-	private boolean checkValidSequence(ArrayList<String> actions) {
+	private boolean checkValidCharacters(ArrayList<String> actions) {
 		String suit;
 		String value;
 		String action;
@@ -108,4 +113,47 @@ public class Game {
 		}
 		return true;
 	}
+	
+	private boolean checkValidSequence(ArrayList<String> actions) {
+		if(actions.size() < 4) {
+			return false;
+		}
+		
+		for(int i = 0; i < 4; i++) {
+			if(actions.get(i).length() == 1) {
+				return false;
+			}
+		}
+		
+		int count = 4;
+		
+		while(count < actions.size()) {
+			if(count % 2 == 0) {
+				if(actions.get(count) == "S") {
+					count++;
+					break;
+				}
+				if(!(actions.get(count).length() == 1)) {
+					count++;
+					return false;
+				}
+				count++;
+			} else {
+				if(!(actions.get(count).length() >= 2)) {
+					count++;
+					return false;
+				}
+				count++;
+			}
+		}
+		
+		while(count++ < actions.size()) {
+			if(actions.get(count).length() == 1) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 }
