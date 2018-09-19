@@ -11,6 +11,7 @@ public class Game {
 	private ArrayList<String> values = new ArrayList<>(Arrays.asList("A", "K", "Q", "J", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"));
 	private final String invalidInputReturn = "Invalid file input";
 	private final String invalidSequenceReturn = "Invalid card sequence";
+	private final String duplicateCardReturn = "Card has already been played";
 	private final String playerWins = "Player Wins";
 	private final String dealerWins = "Dealer Wins";
 	public Game() {}
@@ -42,6 +43,11 @@ public class Game {
 			} else {
 				playerActions.add(actions.get(i));
 			}
+		}
+		
+		//Check for duplicates
+		if(!checkDuplicateCards(cards)) {
+			return duplicateCardReturn;
 		}
 		
 		int cardsIndex = 4;
@@ -88,6 +94,17 @@ public class Game {
 		} else {
 			return playerWins;
 		}
+	}
+
+	private boolean checkDuplicateCards(ArrayList<Card> cards) {
+		ArrayList<String> cardStr = new ArrayList<>();
+		for (Card card : cards) {
+			if(cardStr.contains(card.getFullName())) {
+				return false;
+			}
+			cardStr.add(card.getFullName());
+		}
+		return true;
 	}
 
 	private boolean checkValidCharacters(ArrayList<String> actions) {
@@ -155,5 +172,5 @@ public class Game {
 		
 		return true;
 	}
-	
+
 }
