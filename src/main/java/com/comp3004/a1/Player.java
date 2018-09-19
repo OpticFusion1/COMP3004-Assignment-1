@@ -14,6 +14,27 @@ public class Player {
 		return total;
 	}
 	
+	public String getCards() {
+		StringBuilder str = new StringBuilder();
+		
+		for(int i = 0; i < cards.size(); i++) {
+			str.append(cards.get(i).getShortName() + " ");
+		}
+		
+		return str.toString();
+	}
+	
+	public String getDealerCards() {
+		StringBuilder str = new StringBuilder();
+		
+		for(int i = 0; i < cards.size() - 1; i++) {
+			str.append(cards.get(i).getShortName() + " ");
+		}
+		str.append("XX");
+		
+		return str.toString();
+	}
+	
 	public boolean receiveCard(Card card) {
 		cards.add(card);
 		total += card.getValue();
