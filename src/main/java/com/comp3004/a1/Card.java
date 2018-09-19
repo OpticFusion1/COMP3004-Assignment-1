@@ -17,9 +17,24 @@ public class Card {
 		this.faceValueStr = faceValue;
 		this.suit = suit;
 		this.trueValue = getTrueValue(faceValue);
-		shortName = suit.substring(0, 1) + getTrueValue(faceValueStr);
+		shortName = suit.substring(0, 1) + getShortValue(faceValueStr);
 	}
 	
+	private String getShortValue(String faceValue) {
+		switch (faceValue) {
+		case "Ace":
+			return "A";
+		case "King":
+			return "K";
+		case "Queen":
+			return "Q";
+		case "Jack":
+			return "J";
+		default:
+			return String.valueOf(trueValue);
+		}
+	}
+
 	public Card(String shortName) {
 		this.shortName = shortName;
 		this.suit = getSuitFromSingleCharacter(shortName.substring(0, 1));
