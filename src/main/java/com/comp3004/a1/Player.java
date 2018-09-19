@@ -35,6 +35,15 @@ public class Player {
 		return str.toString();
 	}
 	
+	public boolean hasAce() {
+		for (Card card : cards) {
+			if(card.getFaceValue().equals("Ace")) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean receiveCard(Card card) {
 		cards.add(card);
 		total += card.getValue();
