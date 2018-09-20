@@ -162,6 +162,15 @@ public class BlackjackTesting extends TestCase{
 		assertEquals(12, player.getTotal());
 	}
 	
+	public void testPlayerTwoAcesPlusOneTen() {
+Player player = new Player();
+		
+		player.receiveCard(new Card("SA"));
+		player.receiveCard(new Card("CA"));
+		player.receiveCard(new Card("C10"));
+		assertEquals(12, player.getTotal());
+	}
+	
 	public void testFileInput() throws IOException {
 		Game game = new Game();
 		String testDirectory = "src/test/java/com/comp3004/a1/";
@@ -210,6 +219,79 @@ public class BlackjackTesting extends TestCase{
 		
 		assertEquals(true, player.hasAce());
 		assertEquals(false, player2.hasAce());
+	}
+	
+	public void testDealerConsole() {
+		Game game = new Game();
+		Player dealer = new Player();
+		Deck deck = new Deck();
+		
+		dealer.receiveCard(deck.dealCard());
+		dealer.receiveCard(deck.dealCard());
+		
+		game.playDealer(dealer, deck);
+		
+		assertEquals(true, dealer.getTotal() > 16);
+	}
+	
+	public void testCheckWinner() {
+		Game game = new Game();
+		Player player = new Player();
+		Player dealer = new Player();
+		
+		player.receiveCard(new Card("CA"));
+		player.receiveCard(new Card("CK"));
+		
+		dealer.receiveCard(new Card("SA"));
+		dealer.receiveCard(new Card("SK"));
+		
+		assertEquals(false, game.checkWinner(player, dealer));
+		
+		Player player2 = new Player();
+		Player dealer2 = new Player();
+		
+		player2.receiveCard(new Card("C2"));
+		player2.receiveCard(new Card("CK"));
+		
+		dealer2.receiveCard(new Card("SA"));
+		dealer2.receiveCard(new Card("SK"));
+		
+		assertEquals(false, game.checkWinner(player2, dealer2));
+		
+		Player player3 = new Player();
+		Player dealer3 = new Player();
+		
+		player3.receiveCard(new Card("CA"));
+		player3.receiveCard(new Card("CK"));
+		
+		dealer3.receiveCard(new Card("S2"));
+		dealer3.receiveCard(new Card("SK"));
+		
+		assertEquals(true, game.checkWinner(player3, dealer3));
+		
+		Player player4 = new Player();
+		Player dealer4 = new Player();
+		
+		player4.receiveCard(new Card("CQ"));
+		player4.receiveCard(new Card("CK"));
+		player4.receiveCard(new Card("CJ"));
+		
+		dealer4.receiveCard(new Card("SA"));
+		dealer4.receiveCard(new Card("SK"));
+		
+		assertEquals(false, game.checkWinner(player4, dealer4));
+		
+		Player player5 = new Player();
+		Player dealer5 = new Player();
+		
+		player5.receiveCard(new Card("CQ"));
+		player5.receiveCard(new Card("CK"));
+		
+		dealer5.receiveCard(new Card("SQ"));
+		dealer5.receiveCard(new Card("SK"));
+		dealer5.receiveCard(new Card("SJ"));
+		
+		assertEquals(true, game.checkWinner(player5, dealer5));
 	}
 
 }
